@@ -1,0 +1,5 @@
+# Present the Portfolio as an animated scroll book
+
+Visitors discover all Published Projects within the scroll itself, in an order curated by Hila. There is no public search bar, separate Project index, or browsing experience outside the scroll. This supersedes the earlier proposal for a limited featured selection with an external index and accepts a longer journey as the Portfolio grows. Shared Project links land at the corresponding chapter within the scroll.
+
+Wonder's public Portfolio takes the form of a ceremonial scroll inspired only by the physical unfolding of a Hebrew manuscript. It begins closed with the Wonder name, "By Hila," and the application symbol; native page progress opens the scroll and reveals Projects with their descriptions in sequence, before a closing movement presents Hila's contact methods. The Ruth reference contributes no story, religious symbolism, or decorative language. This deliberately favors a realistic, highly animated authored journey over a conventional portfolio grid, with simplified motion or a static open-scroll presentation when full animation is unsuitable.

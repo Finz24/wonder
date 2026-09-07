@@ -1,0 +1,13 @@
+# Private local configuration and generated caches
+.env
+.env.*
+!.env.example
+node_modules/
+.next/
+dist/
+coverage/
+*.log
+.scratch/
+
+# Reviewed source is preserved on prototype/scroll-book, not production main.
+/prototypes/
