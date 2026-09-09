@@ -1,0 +1,101 @@
+:root {
+  color-scheme: light;
+  font-family: Georgia, "Times New Roman", serif;
+  background: #f4d9d5;
+  color: #3c2222;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+main {
+  min-height: 100vh;
+  width: min(100% - 2rem, 64rem);
+  margin-inline: auto;
+  padding-block: clamp(3rem, 8vw, 7rem);
+}
+
+.masthead {
+  max-width: 42rem;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.eyebrow,
+.project-number {
+  font-family: Arial, sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+h1,
+h2,
+p {
+  margin-block-start: 0;
+}
+
+h1 {
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  margin-block-end: 1rem;
+}
+
+.project {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(16rem, 1.1fr);
+  gap: clamp(2rem, 6vw, 5rem);
+  align-items: center;
+  margin-block-start: 4rem;
+  padding: clamp(1.5rem, 5vw, 4rem);
+  background: #fff7df;
+  border: 1px solid rgb(125 72 62 / 22%);
+  box-shadow: 0 2rem 5rem rgb(74 32 32 / 14%);
+}
+
+.project h2 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+}
+
+.project p {
+  line-height: 1.8;
+}
+
+.sample-label {
+  position: absolute;
+  inset-block-start: 1rem;
+  inset-inline-end: 1rem;
+  padding: 0.35rem 0.65rem;
+  background: #8e3d49;
+  color: #fff8ee;
+  font: 700 0.75rem Arial, sans-serif;
+}
+
+figure {
+  margin: 0;
+}
+
+figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 45% 45% 1rem 1rem;
+}
+
+figcaption {
+  margin-block-start: 0.65rem;
+  color: #765957;
+  font-size: 0.85rem;
+}
+
+@media (max-width: 42rem) {
+  .project {
+    grid-template-columns: 1fr;
+    padding-block-start: 3.5rem;
+  }
+}
