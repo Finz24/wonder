@@ -2,6 +2,8 @@
 
 Research date: 2026-09-09
 
+Decision: **shadcn/ui was selected on 2026-09-10.** See [ADR 0011](../adr/0011-use-shadcn-ui-with-portable-wonder-tokens.md).
+
 ## Decision in one page
 
 Wonder is currently a Next.js 16 / React 19 application. It is a Hebrew-first, RTL, highly visual Portfolio rather than a generic administration product. The component foundation therefore needs accessible interaction behavior without imposing a generic visual identity, while leaving a credible path to other frontend frameworks.

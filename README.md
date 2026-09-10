@@ -20,7 +20,7 @@ The issue #2 foundation provides the production application shell and local dura
 
 ## Run the application
 
-Wonder uses Node.js 20.9 or newer, Next.js 16, and a migrated SQLite database. Copy `.env.example` to `.env` if you want to override the default local database path, then run:
+Wonder uses Node.js 20.9 or newer, Next.js 16, shadcn/ui with Base UI primitives, Tailwind CSS 4, and a migrated SQLite database. Wonder's framework-neutral design tokens live in `src/app/globals.css`; the React component source lives in `src/components/ui`. Copy `.env.example` to `.env` if you want to override the default local database path, then run:
 
 ```powershell
 npm install
