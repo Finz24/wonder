@@ -1,6 +1,6 @@
 # Wonder repository instructions
 
-Wonder New is a clean-slate Hebrew RTL portfolio for Hila's creator-made physical celebration work. Read `CONTEXT.md` and relevant ADRs before making domain decisions; use its defined vocabulary in issues, specifications, tests, and implementation discussions.
+Wonder is a clean-slate Hebrew RTL portfolio for Hila's creator-made physical celebration work. Read `CONTEXT.md` and relevant ADRs before making domain decisions; use its defined vocabulary in issues, specifications, tests, and implementation discussions.
 
 ## Agent skills
 

@@ -2,7 +2,7 @@
 
 This concise discovery brief is expanded by [the tracker-ready implementation specification](wonder-implementation-spec.md). Use the expanded specification when creating implementation tickets.
 
-Status: product and visual direction accepted for implementation on 2026-09-07. This brief uses only Wonder New discovery and the reviewed prototype. It does not inherit earlier Wonder projects.
+Status: product and visual direction accepted for implementation on 2026-09-07. This brief uses only the current Wonder discovery and the reviewed prototype. It does not inherit earlier Wonder projects.
 
 ## Purpose
 

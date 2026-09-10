@@ -39,3 +39,15 @@ npm test
 ```
 
 The Playwright smoke test starts the running application with a fresh database under `.scratch/`. It verifies that the persisted Published fixture is visible in Hebrew RTL and that its separate private Draft content is absent.
+
+## Run with Docker Compose
+
+```powershell
+docker compose up --build --wait
+```
+
+Open `http://localhost:3000`. The container runs as a non-root user, applies database migrations before startup, and stores SQLite data in the `wonder-data` named volume. Stop it with `docker compose down`; add `--volumes` only when you intentionally want to remove the stored local data.
+
+The image health check calls `/api/health`, which verifies the application can reach its database. Run the full packaging smoke test from Bash or CI with `npm run test:docker`; it uses port 3101 and deletes its isolated test volume afterward.
+
+GitHub Actions runs quality checks, the production build, browser tests, and the Docker Compose health smoke test for pull requests and pushes to `main`.

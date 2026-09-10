@@ -10,6 +10,6 @@ Use labelled fixture adapters and a clearly labelled stored sample Project until
 
 ## Context
 
-Issue #2 needs the smallest runnable foundation that stores and displays one Published Project while public and owner work continue independently. Wonder New inherits no earlier technical stack. Current Next.js documentation supports querying a database directly from a Server Component and requires Node.js 20.9 or newer. Current Drizzle documentation supports SQLite with `better-sqlite3` and versioned migrations. Current Playwright documentation supports starting the application under test with isolated environment variables.
+Issue #2 needs the smallest runnable foundation that stores and displays one Published Project while public and owner work continue independently. Wonder inherits no earlier technical stack. Current Next.js documentation supports querying a database directly from a Server Component and requires Node.js 20.9 or newer. Current Drizzle documentation supports SQLite with `better-sqlite3` and versioned migrations. Current Playwright documentation supports starting the application under test with isolated environment variables.
 
 SQLite keeps this first increment durable and locally runnable without committing to a hosting provider. A deployment that cannot provide durable local storage will replace the persistence adapter before core release.
