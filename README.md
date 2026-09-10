@@ -29,6 +29,19 @@ npm run dev
 
 `npm run dev` applies committed migrations and inserts the clearly labelled sample Project only when it is absent. Open `http://localhost:3000`. Local database files live under `data/` and are intentionally ignored by Git.
 
+## Owner sign-in
+
+The Owner Workspace at `/owner` admits Hila's single configured identity only. There is no public registration and no additional roles. Copy `.env.example` to `.env` and set:
+
+- `WONDER_OWNER_EMAIL` — Hila's sign-in email.
+- `WONDER_OWNER_PASSWORD_HASH` — scrypt hash of her password, generated locally with `npm run owner:hash-password -- "choose-a-strong-password"`. Never commit a real password or share the hash.
+- `WONDER_SESSION_SECRET` — a random string of at least 32 characters.
+- `WONDER_SESSION_MAX_AGE_SECONDS` — optional session lifetime (default 43200 = 12 hours).
+
+Without these values, development and test runs use clearly labelled fictional credentials (`owner.fixture@example.com`), never real Creator credentials; production refuses to start. Sign in at `/owner/sign-in`; sign out from the workspace or via `POST /api/owner/sign-out`. Expired or tampered sessions lose access immediately, and every owner page, action, and API route re-verifies the session through the reusable guard in `src/auth/guard.ts`.
+
+E2E tests use isolated fixture storage and default port 3100; set `E2E_PORT` (for example `3207`) to run a worker without colliding with others.
+
 ## Verify the foundation
 
 ```powershell

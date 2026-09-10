@@ -13,6 +13,7 @@
     "db:seed": "tsx scripts/seed.ts",
     "db:setup": "npm run db:migrate && npm run db:seed",
     "db:reset:test": "tsx scripts/reset-test-database.ts",
+    "owner:hash-password": "tsx scripts/hash-owner-password.ts",
     "test": "playwright test",
     "test:docker": "bash tests/docker-compose-health.sh"
   },
