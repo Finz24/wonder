@@ -33,6 +33,14 @@ function withDatabase(work: (sqlite: Database.Database) => void) {
   }
 }
 
+function resetProjectFixture(id: string) {
+  withDatabase((sqlite) => {
+    sqlite.prepare("DELETE FROM published_projects WHERE project_id = ?").run(id);
+    sqlite.prepare("DELETE FROM project_drafts WHERE project_id = ?").run(id);
+    sqlite.prepare("DELETE FROM projects WHERE id = ?").run(id);
+  });
+}
+
 function insertPublishedProject(values: {
   id: string;
   slug: string;
@@ -42,10 +50,8 @@ function insertPublishedProject(values: {
   coverMediaId: string;
   portfolioPosition: number;
 }) {
+  resetProjectFixture(values.id);
   withDatabase((sqlite) => {
-    sqlite.prepare("DELETE FROM published_projects WHERE project_id = ?").run(values.id);
-    sqlite.prepare("DELETE FROM project_drafts WHERE project_id = ?").run(values.id);
-    sqlite.prepare("DELETE FROM projects WHERE id = ?").run(values.id);
     sqlite.prepare("INSERT INTO projects (id, slug) VALUES (?, ?)").run(values.id, values.slug);
     sqlite
       .prepare(
@@ -86,9 +92,7 @@ test.beforeAll(() => {
     portfolioPosition: 2,
   });
   withDatabase((sqlite) => {
-    sqlite.prepare("DELETE FROM published_projects WHERE project_id = ?").run("project_fixture_draft_only");
-    sqlite.prepare("DELETE FROM project_drafts WHERE project_id = ?").run("project_fixture_draft_only");
-    sqlite.prepare("DELETE FROM projects WHERE id = ?").run("project_fixture_draft_only");
+    resetProjectFixture("project_fixture_draft_only");
     sqlite
       .prepare("INSERT INTO projects (id, slug) VALUES (?, ?)")
       .run("project_fixture_draft_only", "fixture-draft-only");
@@ -140,18 +144,21 @@ test("a single-photo chapter is complete without gallery controls", async ({ pag
   await expect(chapter.locator("button, [role='tablist'], [role='listbox'], input")).toHaveCount(0);
 });
 
-test("an album chapter shows its cover and photo count without autoplay", async ({ page }) => {
+test("an album chapter shows its cover and exposes its photo count for selection", async ({
+  page,
+}) => {
   await page.goto("/");
 
   const chapter = page.locator(`article#${ALBUM_SLUG}`);
+  // Selectable thumbnails arrive with issue #6; this chapter owns the cover,
+  // caption, alternative text, and the media-count hook that work plugs into.
   await expect(chapter).toHaveAttribute("data-media-count", "2");
-  const cover = chapter.getByRole("img", { name: "תמונת שער לאלבום הבדיקה" });
-  await expect(cover).toBeVisible();
+  await expect(
+    chapter.getByRole("img", { name: "תמונת שער לאלבום הבדיקה" }),
+  ).toBeVisible();
   await expect(chapter.getByText("כיתוב השער של אלבום הבדיקה")).toBeVisible();
-
-  const before = await cover.getAttribute("src");
-  await page.waitForTimeout(600);
-  await expect(chapter.getByRole("img", { name: "תמונת שער לאלבום הבדיקה" })).toHaveAttribute("src", before ?? "");
+  await expect(chapter.locator("figure img")).toHaveCount(1);
+  await expect(chapter.locator("[role='tablist'], [role='listbox']")).toHaveCount(0);
 });
 
 test("never renders private Draft-only Projects", async ({ page }) => {
@@ -177,6 +184,28 @@ test("chapters stay readable with reduced motion", async ({ page }) => {
   await expect(page.getByRole("heading", { name: SAMPLE_TITLE })).toBeVisible();
   await expect(page.getByRole("heading", { name: ALBUM_TITLE })).toBeVisible();
   await expect(page.getByRole("heading", { name: SINGLE_TITLE })).toBeVisible();
+});
+
+test("keyboard and assistive reading order follows the curated chapter sequence", async ({
+  page,
+}) => {
+  await page.goto("/");
+
+  const headingNames = await page.locator("main h1, main h2").allTextContents();
+  expect(headingNames.map((text) => text.trim())).toEqual([
+    "תיק העבודות של הילה",
+    SAMPLE_TITLE,
+    ALBUM_TITLE,
+    SINGLE_TITLE,
+  ]);
+
+  for (const slug of ["sample-paper-blossoms", ALBUM_SLUG, SINGLE_SLUG]) {
+    const chapter = page.locator(`article#${slug}`);
+    const labelledBy = await chapter.getAttribute("aria-labelledby");
+    const headingText = await chapter.locator(`#${labelledBy}`).textContent();
+    const chapterHeading = await chapter.getByRole("heading", { level: 2 }).textContent();
+    expect(headingText?.trim()).toEqual(chapterHeading?.trim());
+  }
 });
 
 test("chapters stay usable on a narrow mobile viewport", async ({ page }) => {

@@ -13,10 +13,12 @@ import type { PublishedProject } from "@/projects/contracts";
 type ProjectChapterProps = {
   project: PublishedProject;
   chapterNumber: number;
-  sampleBadgeText?: string | null;
+  isSample?: boolean;
 };
 
-export function ProjectChapter({ project, chapterNumber, sampleBadgeText }: ProjectChapterProps) {
+const SAMPLE_BADGE_TEXT = "פרויקט לדוגמה";
+
+export function ProjectChapter({ project, chapterNumber, isSample }: ProjectChapterProps) {
   const headingId = `project-${project.projectId}`;
 
   return (
@@ -29,9 +31,7 @@ export function ProjectChapter({ project, chapterNumber, sampleBadgeText }: Proj
       className="relative mt-16 scroll-mt-8"
     >
       <Card className="relative grid items-center gap-0 md:grid-cols-[minmax(0,0.9fr)_minmax(16rem,1.1fr)] md:[--card-spacing:--spacing(8)]">
-        {sampleBadgeText ? (
-          <Badge className="absolute end-4 top-4">{sampleBadgeText}</Badge>
-        ) : null}
+        {isSample ? <Badge className="absolute end-4 top-4">{SAMPLE_BADGE_TEXT}</Badge> : null}
         <CardHeader className="pt-10 md:pt-8">
           <p className="font-utility text-xs font-bold tracking-[0.12em] text-muted-foreground">
             פרק {chapterNumber}

@@ -7,8 +7,6 @@ import { isSampleProject } from "@/projects/fixtures";
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-const SAMPLE_BADGE_TEXT = "פרויקט לדוגמה";
-
 export default async function Home() {
   const projects = await new DrizzlePublishedProjectReader(database).listPublishedProjects();
 
@@ -37,7 +35,7 @@ export default async function Home() {
                 key={project.projectId}
                 project={project}
                 chapterNumber={index + 1}
-                sampleBadgeText={isSampleProject(project) ? SAMPLE_BADGE_TEXT : null}
+                isSample={isSampleProject(project)}
               />
             );
           })}
