@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 540" role="img" aria-labelledby="title description">
+  <title id="title">Sample paper blossoms</title>
+  <desc id="description">A deliberately illustrative placeholder for development fixture content.</desc>
+  <defs>
+    <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#f8d9d2"/>
+      <stop offset="1" stop-color="#dca9ad"/>
+    </linearGradient>
+  </defs>
+  <rect width="720" height="540" fill="url(#background)"/>
+  <g fill="none" stroke="#79553f" stroke-width="10" stroke-linecap="round">
+    <path d="M360 500C370 380 350 250 330 116"/>
+    <path d="M348 352C270 326 230 279 210 222"/>
+    <path d="M354 414C435 376 482 324 500 260"/>
+  </g>
+  <g fill="#fff1d0" stroke="#a34f5c" stroke-width="7">
+    <path d="M329 154C255 163 229 91 271 57c32-26 70 1 73 39 4-45 58-68 87-29 33 45-10 97-64 89 33 35 5 86-45 72-45-13-43-64-15-87-35 20-80-4-75-43 5-41 57-52 97-17z"/>
+    <path d="M206 244c-54 9-74-43-43-70 25-21 53-2 56 28 2-34 42-52 64-22 25 35-7 74-48 68 25 27 4 65-34 55-34-10-32-49-11-66-26 15-60-3-56-33 4-31 43-39 72-12z"/>
+    <path d="M500 280c-55 8-74-43-43-70 24-21 53-2 55 27 3-34 43-51 65-21 25 34-8 73-48 67 24 27 3 66-34 55-34-10-33-48-11-66-27 16-60-2-56-32 4-31 43-40 72-13z"/>
+  </g>
+  <circle cx="337" cy="135" r="27" fill="#d49a38"/>
+  <circle cx="212" cy="231" r="20" fill="#d49a38"/>
+  <circle cx="506" cy="267" r="20" fill="#d49a38"/>
+</svg>

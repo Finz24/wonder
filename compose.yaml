@@ -1,0 +1,17 @@
+name: wonder
+
+services:
+  wonder:
+    build:
+      context: .
+      target: runner
+    environment:
+      DATABASE_URL: file:/app/data/wonder.sqlite
+    init: true
+    ports:
+      - "${WONDER_PORT:-3000}:3000"
+    volumes:
+      - wonder-data:/app/data
+
+volumes:
+  wonder-data:
