@@ -11,6 +11,14 @@ import { projectId, projectMediaId } from "./contracts";
 
 export const SAMPLE_CONTENT_NOTICE = "תוכן לדוגמה בלבד — לא עבודה אמיתית של הילה.";
 
+/**
+ * Development fixtures carry a `sample-` slug prefix so the public Portfolio
+ * can mark them unmistakably without mislabelling Hila's real Projects.
+ */
+export function isSampleProject(project: { slug: string }): boolean {
+  return project.slug.startsWith("sample-");
+}
+
 const sampleProjectId = projectId("project_fixture_paper_blossoms");
 const sampleMediaId = projectMediaId("media_fixture_paper_blossoms_cover");
 const sampleCover = {
